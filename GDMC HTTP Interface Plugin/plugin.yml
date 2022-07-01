@@ -1,0 +1,15 @@
+name: GdmcHttpInterfacePlugin
+main: com.gdmc.HttpInterfacePlugin
+version: 1.0
+api-version: 1.16
+commands:
+    set-build-area:
+        description: Select a build area that can be retrieved from the http api.
+        usage: /set-build-area x0 y0 z0 x1 y1 z1
+        aliases: [build-area]
+        permission: gdmc.admin
+permissions:
+    gdmc.admin:
+        description: Allows running all the GDMC API related commands.
+        default: op
+        
