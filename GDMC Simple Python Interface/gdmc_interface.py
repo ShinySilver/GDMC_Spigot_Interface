@@ -1,5 +1,5 @@
 import requests
-from typing import List
+
 
 def get_block(x: int, y: int, z: int):
     """
@@ -9,47 +9,46 @@ def get_block(x: int, y: int, z: int):
     :param z: 
     :return: 
     """
-    url = f'http://localhost:9000/blocks?x={x}&y={y}&z={z}'
+    url = f'http://localhost:4567/block?x={x}&y={y}&z={z}'
     return requests.get(url)
 
 
-def set_block(x: int, y: int, z: int, block_id: str, do_block_updates: bool = True):
+def set_block(x: int, y: int, z: int, block: str):
     """
 
     :param x:
     :param y:
     :param z:
-    :param block_id:
-    :param do_block_updates:
+    :param block:
     :return:
     """
-    url = f'http://localhost:9000/blocks?x={x}&y={y}&z={z}&doBlockUpdates={do_block_updates}'
-    return requests.put(url, str(block_id))
+    url = f'http://localhost:4567/block?x={x}&y={y}&z={z}&block={block}'
+    return requests.put(url)
 
 
-def set_blocks(X: List[int], Y: List[int], Z: List[int], blockIds: List[str],
-               root_x: int = 0, root_y: int = 0, root_z: int = 0, do_block_updates: bool = True):
+def commit(commit_name: str = "Unnamed_Commit"):
     """
 
-    :param blockIds:
-    :param X:
-    :param Y:
-    :param Z:
-    :param root_x:
-    :param root_y:
-    :param root_z:
-    :param do_block_updates:
+    :param commit_name:
     :return:
     """
-    body = str.join("\n", [f'~{x} ~{y} ~{z} {blockId}' for blockId, x, y, z in zip(blockIds, X, Y, Z)])
-    return set_block(root_x, root_y, root_z, body, do_block_updates)
+    url = f'http://localhost:4567/commit?commit_name={commit_name}'
+    return requests.post(url)
 
 
-def run_command(command: str):
+def sync(timeout: int = 300):
     """
 
-    :param command: 
-    :return: 
+    :return:
     """
-    url = 'http://localhost:9000/command'
-    return requests.post(url, bytes(str(command), "utf-8"))
+    url = f'http://localhost:4567/sync?timeout={timeout}'
+    return requests.post(url)
+
+
+def status():
+    """
+
+    :return:
+    """
+    url = f'http://localhost:4567/status'
+    return requests.post(url)

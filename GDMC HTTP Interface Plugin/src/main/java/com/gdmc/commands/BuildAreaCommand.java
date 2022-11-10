@@ -11,6 +11,7 @@ import org.bukkit.command.TabCompleter;
 public class BuildAreaCommand implements CommandExecutor, TabCompleter {
 
 	public BuildAreaCommand() {
+		// Not implemented
 	}
 
 	@Override
@@ -22,11 +23,9 @@ public class BuildAreaCommand implements CommandExecutor, TabCompleter {
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		ArrayList<String> list = new ArrayList<>();
 		if (args.length == 1) {
-			// TODO
+			//
 		} else if (args.length == 2 && !args[0].equals("undo")) {
-			// TODO
-		} else if (args.length == 3 && !args[0].equals("undo")) {
-			// TODO
+			//
 		}
 		return list;
 	}

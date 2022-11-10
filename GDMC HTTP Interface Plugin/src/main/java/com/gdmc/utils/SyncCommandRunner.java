@@ -106,7 +106,7 @@ public class SyncCommandRunner implements RemoteConsoleCommandSender {
 	}
 
 	@Override
-	public void sendMessage(String[] messages) {
+	public void sendMessage(String... messages) {
 		for (String message : messages) {
 			value.add(message);
 		}
@@ -118,7 +118,7 @@ public class SyncCommandRunner implements RemoteConsoleCommandSender {
 	}
 
 	@Override
-	public void sendMessage(UUID sender, String[] messages) {
+	public void sendMessage(UUID sender, String... messages) {
 		for (String message : messages) {
 			value.add(message);
 		}

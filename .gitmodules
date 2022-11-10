@@ -1,0 +1,3 @@
+[submodule "GDMC HTTP Interface Plugin/libraries/spark"]
+	path = GDMC HTTP Interface Plugin/libraries/spark
+	url = https://github.com/perwendel/spark.git

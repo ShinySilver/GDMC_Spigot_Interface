@@ -1,7 +1,7 @@
 name: GdmcHttpInterfacePlugin
 main: com.gdmc.HttpInterfacePlugin
 version: 1.0
-api-version: 1.16
+api-version: 1.19
 commands:
     set-build-area:
         description: Select a build area that can be retrieved from the http api.
