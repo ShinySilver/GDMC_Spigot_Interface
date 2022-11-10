@@ -1,5 +1,8 @@
 # GDMC_Framework_Dev
 
+A framework to modify the map on a spigot minecraft server from an HTTP interface / Python. It uses spark to do most of
+the network-related stuff, and FastAsyncWorldEdit to actually place the blocks with high performance.
+
 ## What can we find in this repo?
 
 In the `GDMC HTTP Interface Plugin/` folder, you'll find the source code of the GDMC HTTP Interface plugin for Spigot.
@@ -12,13 +15,12 @@ tests.
 
 ## Why should I use this framework?
 
-It's fast. Very fast. You can place up to 500k block per second without even slowing the target server. I'll do a
-detailed evaluation here if I'm bored.
+~~It's fast. Very fast. You can place up to 500k block per second without even slowing the target server. I'll do a
+detailed evaluation here if I'm bored.~~ I recoded everything from the ground up a few month ago, I expect it to be even faster, but I've done neither testing nor implemented batching, sooooo idk really.
 
 ## What version of minecraft does this framework support?
 
-Currently, 1.16.5. I'll make a version compatible with multiple version of minecraft "Soon" using reflection. Or I'll
-just update it to the latest version of MC, shouldn't take more than half an hour work. I'll see later.
+Currently, 1.19.X. But as long as you swap the Fast Async World Edit in the server plugin folder with another version, the HTTP interface plugin (and its python interface) should work as long as its API is not too different.
 
 ## I want pictures!
 
@@ -34,7 +36,7 @@ Don't forget to tell my script to build Spigot for 1.16.5 when it asks you!
 At last, you'll only have to run `3_start_server.sh` in order to start the server. The first time you'll execute it, the
 server will shut down after generating a license agreement file. Go read it & replace `eula=false` with `eula=true`
 after agreeing. Restart the server, it's gonna start up! When fully started, you'll be able to connect from Minecraft by
-entering "localhost" as the server IP.
+entering "localhost" as the server IP, & try running some unit test from python.
 
 Note: if you want to be able to connect to your GDMC server in offline mode, you'll have to edit the
 `server.properties` file generated at the 1st full server startup and replace `online-mode=true` with
@@ -44,14 +46,10 @@ username they want. Be wary! But it's ok as long as you are indeed offline.
 ### As a framework dev
 If you want to contribute, you'll have to open the `GDMC HTTP Interface Plugin/` as a new java project in your IDE &
 import into your project's java build path `GDMC Server/spigot-X.X.X.jar` (replace X.X.X with the MC version you want
-to support). This is the server jar, all the libs and classes you see there can be used in the plugin.
+to support). This is the server jar, all the libs and classes you see there can be used in the plugin. I left some of
+my IDE config file in the folder, if you are using Eclipse, you might get lucky!
  
-However this jar is very cluttered - if you want something easier to navigate into, you should in addition to the
+However this jar is cluttered with all the lib used by minecraft - if you want something easier to navigate into, you should in addition to the
 previous one import `GDMC Server/BuildTools/Spigot/Spigot-API/target/spigot-api-X.X.X-RX.X-SNAPSHOT.jar`. It's the
-spigot API that the plugin is using & it's supposed to stay stable between minecraft version! Moreover its source can be
-imported to be used as & documentation, and can be found in `GDMC Server/BuildTools/Spigot/Spigot-API/src/main/java/`.
-
-In a best case scenario, we would create our plugin using only spigot API calls in order to have a plugin working on all
-MC versions, but we cannot - some low level things cannot be done using it, such as serializing chunks as json or
-parsing block data str for example. Soooo I have to use some ugly code from the full server jar, and you can't just
-import the spigot API
+spigot API that the plugin is using & it's supposed to stay 99.99% stable between minecraft version! Moreover its source can be
+imported to be used as a documentation, and can be found in `GDMC Server/BuildTools/Spigot/Spigot-API/src/main/java/`.
