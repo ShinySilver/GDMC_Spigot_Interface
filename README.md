@@ -31,7 +31,7 @@ Maybe later?
 If you want to try using our framework for your submission, you should first clone our repo. Then, you should open the
 `GDMC Server/` folder, run the `1_build_server_jar.sh` script in order to download BuildTools & build Spigot, then
 `2_fetch_latest_interface_build.sh` in order to download the latest interface version for the MC version you selected.
-Don't forget to tell my script to build Spigot for 1.16.5 when it asks you!
+Don't forget to tell my script to build Spigot for 1.19.2 when it asks you!
 
 At last, you'll only have to run `3_start_server.sh` in order to start the server. The first time you'll execute it, the
 server will shut down after generating a license agreement file. Go read it & replace `eula=false` with `eula=true`
